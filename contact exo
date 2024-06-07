@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+
+// Classe Contact
+class Contact {
+    String name;
+    String phoneNumber;
+
+    public Contact(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+}
+
+// Classe ContactsManager
+class ContactsManager {
+    ArrayList<Contact> contactsList;
+
+    public ContactsManager() {
+        contactsList = new ArrayList<>();
+    }
+
+    public void addContact(Contact contact) {
+        contactsList.add(contact);
+    }
+
+    public Contact searchContact(String name) {
+        for (Contact contact : contactsList) {
+            if (contact.name.equalsIgnoreCase(name)) {
+                return contact;
+            }
+        }
+        return null;
+    }
+}
+
+// Classe principale avec la méthode main
+public class Main {
+    public static void main(String[] args) {
+        // Créer un objet ContactsManager
+        ContactsManager myContactsManager = new ContactsManager();
+
+        // Créer et ajouter des contacts
+        Contact contact1 = new Contact("Alice", "123-456-7890");
+        myContactsManager.addContact(contact1);
+
+        Contact contact2 = new Contact("Bob", "234-567-8901");
+        myContactsManager.addContact(contact2);
+
+        Contact contact3 = new Contact("Charlie", "345-678-9012");
+        myContactsManager.addContact(contact3);
+
+        Contact contact4 = new Contact("David", "456-789-0123");
+        myContactsManager.addContact(contact4);
+
+        Contact contact5 = new Contact("Eve", "567-890-1234");
+        myContactsManager.addContact(contact5);
+
+        // Rechercher un contact
+        Contact searchedContact = myContactsManager.searchContact("Charlie");
+        if (searchedContact != null) {
+            System.out.println("Phone number of " + searchedContact.name + ": " + searchedContact.phoneNumber);
+        } else {
+            System.out.println("Contact not found.");
+        }
+    }
+}
